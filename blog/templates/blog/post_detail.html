@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="post">
+  {% if post.image %}
+        <div class ="image">
+            <img src="/{{ post.image.url }}" style="width:300px;height:auto">
+        </div>
+        {% endif %}
+</div>
+<div class="card mb-3">
+    <h2 class="card-header bg-dark text-white">{{ post.title }}</h2>
+    <div class="card-body">
+      <p>{{ post.created_at }}, {{ post.category }}</p>
+      {{ post.text|linebreaksbr | urlize }}
+    </div>
+</div>
+{% endblock %}
