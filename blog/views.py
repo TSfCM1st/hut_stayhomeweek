@@ -2,6 +2,10 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from .models import Post, Category
+from django.contrib.auth.mixins import LoginRequiredMixin  # 追加
+from django.urls import reverse_lazy
+from .forms import PostCreateForm
+
 
 class IndexView(generic.ListView):
     template_name = 'blog/post_list.html'
@@ -32,3 +36,19 @@ class DetailView(generic.DetailView):
     template_name = 'blog/post_detail.html'
     model = Post
     
+class AddView(LoginRequiredMixin, generic.CreateView):
+    template_name = 'blog/post_form.html'
+    model = Post
+    form_class = PostCreateForm
+    success_url = reverse_lazy('blog:index')
+    
+class UpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'blog/post_form.html'
+    model = Post
+    form_class = PostCreateForm
+    success_url = reverse_lazy('blog:index')
+
+class DeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'blog/post_confirm_delete.html'
+    model = Post
+    success_url = reverse_lazy('blog:index')
