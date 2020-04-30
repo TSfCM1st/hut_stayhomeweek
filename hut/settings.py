@@ -63,7 +63,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                 'blog.context_processors.common',
+                'blog.context_processors.common',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -121,5 +122,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-IMAGE_ROOT = os.path.join(BASE_DIR, 'images')
-IMAGE_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+LOGIN_URL='admin:login'
