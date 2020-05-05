@@ -12,7 +12,9 @@ class Post(models.Model):
 
     title = models.CharField('タイトル', max_length=100)
     text = models.TextField('本文')
+
     image = models.ImageField(upload_to='images/',blank=True, null=True)
+    
     created_at = models.DateTimeField('作成日',default=timezone.now)
     category = models.ForeignKey(
         Category, verbose_name = 'カテゴリ', on_delete = models.PROTECT
